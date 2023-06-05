@@ -1,5 +1,5 @@
 # Degea / Truesec onboarding scripts
-Scripts are tested in Powershell v7 and later. Requires Microsoft.Graph module.
+Scripts are only tested in Powershell v7 and later. Requires Microsoft.Graph module.
 
 Download or clone the repo, then run scripts in order 1-4. PDF files are for reference.
 
