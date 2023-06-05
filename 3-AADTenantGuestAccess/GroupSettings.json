@@ -1,0 +1,59 @@
+{
+    "groups": [
+      {
+        "displayName": "Truesec SOC Readers",
+        "description": "Truesec MSS Detect and Respond Readers",
+        "mailEnabled": false,
+        "isAssignableToRole": true,
+        "AADRoles": "Security Reader",
+        "AADRoleId": "5d6b6bb7-de71-4623-b4af-96380a352509",
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+      },
+      {
+        "displayName": "Truesec SOC Operators",
+        "description": "Truesec MSS Detect and Respond Operators",
+        "mailEnabled": false,
+        "isAssignableToRole": true,
+        "AADRoles": "Security Operators",
+        "AADRoleId": "5f2222b1-57c3-48ba-8ad5-d4759f1fde6f",
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+      },
+      {
+        "displayName": "Truesec SOC Live Responders",
+        "description": "Truesec MSS Detect and Respond Live Responders",
+        "mailEnabled": false,
+        "isAssignableToRole": false,
+        "AADRoles": null,
+        "AADRoleId": null,
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+      },
+      {
+        "displayName": "Truesec SOC Privileged Operators",
+        "description": "Truesec MSS Detect and Respond Privileged Operators",
+        "mailEnabled": false,
+        "isAssignableToRole": false,
+        "AADRoles": null,
+        "AADRoleId": null,
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+      },
+      {
+        "displayName": "Truesec SOC Admins",
+        "description": "Truesec MSS Detect and Respond Administrators",
+        "mailEnabled": false,
+        "isAssignableToRole": false,
+        "AADRoles": null,
+        "AADRoleId": null,
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+      },
+      {
+        "displayName": "Truesec SOC Admins PIM",
+        "description": "Truesec MSS Detect and Respond Administrators privileged access group",
+        "mailEnabled": false,
+        "isAssignableToRole": true,
+        "AADRoles": null,
+        "AADRoleId": null,
+        "OwnersSP": null
+      }
+    ]
+  }
+  

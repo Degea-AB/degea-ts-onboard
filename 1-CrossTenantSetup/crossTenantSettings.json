@@ -1,0 +1,37 @@
+{
+    "b2bCollaborationOutbound": null,
+    "inboundTrust": {
+      "isMfaAccepted": true,
+      "isCompliantDeviceAccepted": true,
+      "isHybridAzureADJoinedDeviceAccepted": false
+    },
+    "automaticUserConsentSettings": {
+      "inboundAllowed": false,
+      "outboundAllowed": null
+    },
+    "b2bDirectConnectInbound": null,
+    "isServiceProvider": null,
+    "b2bDirectConnectOutbound": null,
+    "tenantId": "07d2f395-f69c-43ab-88a2-b82f1151042d",
+    "b2bCollaborationInbound": {
+      "applications": {
+        "targets": [
+          {
+            "targetType": "application",
+            "target": "AllApplications"
+          }
+        ],
+        "accessType": "allowed"
+      },
+      "usersAndGroups": {
+        "targets": [
+          {
+            "targetType": "user",
+            "target": "AllUsers"
+          }
+        ],
+        "accessType": "allowed"
+      }
+    }
+  }
+  
