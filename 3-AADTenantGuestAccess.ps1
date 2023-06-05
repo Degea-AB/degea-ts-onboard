@@ -60,7 +60,7 @@ foreach ($group in $groupSettings.groups) {
     $groupObject = $group | Select-Object mailenabled, displayName, description, isAssignableToRole
     #Create group
     $groupObject | Add-Member -NotePropertyMembers @{
-        mailNickname    = (New-MailNickname $groupObject.displayName)
+        mailNickname    = (New-MailNickname -InputString $groupObject.displayName)
         securityEnabled = $true
     }
 
@@ -95,7 +95,7 @@ foreach ($group in $groupSettings.groups) {
 
 
 
-    # PIM part commented out because PIM enrollment is not available via graph api yet
+    # PIM
 
     if ($group.displayName -eq "Truesec SOC Admins") {
         $adminGroupId = $groupResponse.id
@@ -114,10 +114,10 @@ foreach ($group in $groupSettings.groups) {
         # Open link to edit group membership PIM rules
         Clear-Host
         
-        Write-Host -ForegroundColor Yellow "Edit the 'Member' role, enable 'Allow permanent eligible assignment' under 'Assignment', then save. Press Enter once done."
         "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ResourceMenuBlade/~/RoleSettings/resourceId/$($groupResponse.id)/resourceType/Security/provider/aadgroup/resourceDisplayName/Truesec%20SOC%20Admins%20PIM/resourceExternalId/$($groupResponse.id)" | clip
         "https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/ResourceMenuBlade/~/RoleSettings/resourceId/$($groupResponse.id)/resourceType/Security/provider/aadgroup/resourceDisplayName/Truesec%20SOC%20Admins%20PIM/resourceExternalId/$($groupResponse.id)"
         Write-Host -ForegroundColor Yellow "URL copied to clipboard."
+        Write-Host -ForegroundColor Yellow "Edit the 'Member' role, enable 'Allow permanent eligible assignment' under 'Assignment', then save. Press Enter once done."
         Pause
 
         #PIM
