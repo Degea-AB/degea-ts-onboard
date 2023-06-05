@@ -121,8 +121,7 @@ foreach ($group in $groupSettings.groups) {
         Pause
 
         #PIM
-        # This part does not work yet, no way to onboard group to PIM via graph api
-        #Body for request
+        #Body
         $body = [PSCustomObject]@{
             accessId      = "member"
             principalId   = $adminGroupId
