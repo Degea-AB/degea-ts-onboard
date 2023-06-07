@@ -2,7 +2,7 @@
 # Company: Degea AB
 # Prerequisites: Step 4 has been run and Global Administrator Role
 # Notes: 
-    #The security group 'Degea Security Readers' needs to be added manually to the Reader role in Defender for Endpoint
+    #The security group 'Degea Security Readers' needs to be added manually to the Reader role in Defender for Endpoint after the script has been run
     #This script should only be run in the case where Degea does not have regular administrative access (GDAP)
 
 #Functions
