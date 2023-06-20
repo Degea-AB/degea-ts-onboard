@@ -3,7 +3,7 @@ Scripts are only tested in Powershell v7 and later.
 
 Requires Microsoft.Graph module.
 ```
-Install-Module -Name Microsoft-Graph -Scope CurrentUser
+Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 
 Download or clone the repo, then run scripts in order 1-4. PDF files are for reference.
