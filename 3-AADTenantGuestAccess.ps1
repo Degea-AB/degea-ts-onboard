@@ -49,9 +49,7 @@ Connect-MgGraph -Scopes $scopes
 
 $groupSettings = Get-Content "$PSScriptRoot\3-AADTenantGuestAccess\GroupSettings.json" | ConvertFrom-Json
 
-#Get ID for service principal
-$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
-$servicePrincipalId = $response.id
+#Get all active directory role templates
 $allRoles = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directoryRoles" | Select-Object -ExpandProperty value
 
 #Create groups
@@ -70,6 +68,8 @@ foreach ($group in $groupSettings.groups) {
 
     #Add owners (if it has a value)
     if ($group.OwnersSP) {
+        $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{$($group.OwnersSP)}')"
+        $servicePrincipalId = $response.id
         $uri = "https://graph.microsoft.com/v1.0/groups/$($groupResponse.id)/owners/`$ref"
         $body = [PSCustomObject]@{
             "@odata.id" = "https://graph.microsoft.com/v1.0/servicePrincipals/$servicePrincipalId"
