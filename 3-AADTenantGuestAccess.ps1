@@ -50,7 +50,7 @@ Connect-MgGraph -Scopes $scopes
 $groupSettings = Get-Content "$PSScriptRoot\3-AADTenantGuestAccess\GroupSettings.json" | ConvertFrom-Json
 
 #Get ID for service principal
-$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
 $servicePrincipalId = $response.id
 $allRoles = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/directoryRoles" | Select-Object -ExpandProperty value
 
