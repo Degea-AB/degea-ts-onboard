@@ -30,7 +30,7 @@ $response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.co
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
 
 if ($response.notes -eq "This application is used by Truesec SOC to fetch security information and update IOCs and custom detection rules." -and `
-    $response.tags -contains "HideApp") {
+        $response.tags -contains "HideApp") {
     Write-Host -ForegroundColor Green 'Settings applied successfully to service principal'
 } 
 else {
