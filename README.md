@@ -5,9 +5,9 @@ Requires Microsoft.Graph module.
 ```
 Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
-SOC License requirements:
-At least Azure Active Premium Plan 2 level. (One AAD Premium Plan 2 license)
-At least one license containing Microsoft Defender for Endpoint plan 2. (One DfE Plan 2 license or license containing DfE Plan 2)
+SOC License requirements: <br>
+At least Azure Active Premium Plan 2 level. (One AAD Premium Plan 2 license) <br>
+At least one license containing Microsoft Defender for Endpoint plan 2. (One DfE Plan 2 license or license containing DfE Plan 2) <br>
 
 Download or clone the repo, then run scripts in order 1-4. PDF files are for reference.
 
