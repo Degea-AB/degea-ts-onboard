@@ -1,6 +1,6 @@
 # Degea / Truesec onboarding scripts
-Scripts are only tested in **Powershell v7** and later on Windows 10/11. <br>
-[Overview page Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3)
+Scripts are only tested in **Powershell v7** and later on Windows 10/11. <br><br>
+[Overview and download page Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3)
 
 Requires Microsoft.Graph module.
 ```
