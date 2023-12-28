@@ -1,0 +1,14 @@
+{
+    "groups": [
+      {
+        "displayName": "Degea Security Readers",
+        "description": "Degea Security Readers",
+        "mailEnabled": false,
+        "isAssignableToRole": true,
+        "AADRoles": "Security Reader",
+        "AADRoleId": "5d6b6bb7-de71-4623-b4af-96380a352509",
+        "OwnersSP": "2fb9874d-773d-4b74-bc24-282f4c0e7816"
+      }
+    ]
+  }
+  
