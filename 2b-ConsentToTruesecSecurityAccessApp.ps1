@@ -12,7 +12,7 @@ Start-Sleep -Seconds 30
 #Graph
 Disconnect-MgGraph
 $scopes = "Application.ReadWrite.All"
-Connect-MgGraph -Scopes $scopes
+Connect-MgGraph -Scopes $scopes -ContextScope Process
 
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
 

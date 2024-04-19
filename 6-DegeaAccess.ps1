@@ -46,7 +46,7 @@ $scopes = "Policy.ReadWrite.CrossTenantAccess", #Cross tenant access
 "Application.ReadWrite.All", #Edit Service principal
 'Group.ReadWrite.All', # Create groups
 'RoleManagement.ReadWrite.Directory' # Assign AAD Roles
-Connect-MgGraph -Scopes $scopes
+Connect-MgGraph -Scopes $scopes -ContextScope Process
 
 # Open URL to consent application
 Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=2fb9874d-773d-4b74-bc24-282f4c0e7816"

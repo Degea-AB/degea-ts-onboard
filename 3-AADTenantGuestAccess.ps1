@@ -45,7 +45,7 @@ $scopes = 'Group.ReadWrite.All', # Create groups
 'RoleManagement.ReadWrite.Directory', # Assign AAD Roles
 'PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup' # Privileged role assignment for groups (PIM)
 
-Connect-MgGraph -Scopes $scopes
+Connect-MgGraph -Scopes $scopes -ContextScope Process
 
 $groupSettings = Get-Content "$PSScriptRoot\3-AADTenantGuestAccess\GroupSettings.json" | ConvertFrom-Json
 
