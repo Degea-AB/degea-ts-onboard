@@ -8,7 +8,8 @@ Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 SOC License requirements: <br>
 -At least Azure Active Premium Plan 2 level to enable PIM functionality. (One AAD Premium Plan 2 license) <br>
--At least one license containing Microsoft Defender for Endpoint plan 2. (One DfE Plan 2 license or license containing DfE Plan 2) <br>
+-(EDR) Enough Defender for Endpoint Plan 2 licenses to change licensing in security portal to DfE P2. (DfE Plan 2 license or license containing DfE Plan 2) <br>
+[Endpoint subscription state](https://security.microsoft.com/securitysettings/endpoints/licenses) > Subscription state should be DfE P2, can be changed under "Manage subscription settings" <br>
 -Onboarded at least one device to Defender for Endpoint, ensure that EDR logs appear on device (timeline + advanced hunting)<br>
 
 Download or clone the repo, then run scripts in order 1-4. PDF files are for reference.
