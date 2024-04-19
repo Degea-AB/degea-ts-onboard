@@ -79,18 +79,20 @@ foreach ($group in $groupSettings.groups) {
 
     #Assign AAD roles (if it has a value)
     if ($group.AADRoleId) {
-        # Activate role template if it is not activated
-        if ($allRoles.roleTemplateId -notcontains $group.AADRoleId) {
+        foreach($role in $group.AADRoleId) {
+            # Activate role template if it is not activated
+            if ($allRoles.roleTemplateId -notcontains $role) {
+                $body = [PSCustomObject]@{
+                    roleTemplateId = $role
+                } | ConvertTo-Json
+                Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/directoryRoles" -Body $body
+            }
+            $uri = "https://graph.microsoft.com/v1.0/directoryRoles/roleTemplateId=$role/members/`$ref"
             $body = [PSCustomObject]@{
-                roleTemplateId = $group.AADRoleId
+                "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$($groupResponse.id)"
             } | ConvertTo-Json
-            Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/directoryRoles" -Body $body
+            Invoke-MgGraphRequest -Method POST -Uri $uri -Body $body
         }
-        $uri = "https://graph.microsoft.com/v1.0/directoryRoles/roleTemplateId=$($group.AADRoleId)/members/`$ref"
-        $body = [PSCustomObject]@{
-            "@odata.id" = "https://graph.microsoft.com/v1.0/directoryObjects/$($groupResponse.id)"
-        } | ConvertTo-Json
-        Invoke-MgGraphRequest -Method POST -Uri $uri -Body $body
     }
 
 
