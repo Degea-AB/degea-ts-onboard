@@ -14,20 +14,20 @@ Disconnect-MgGraph
 $scopes = "Application.ReadWrite.All"
 Connect-MgGraph -Scopes $scopes -ContextScope Process
 
-$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
 
 # Hide app
 $tags = [PSCustomObject]@{ tags = @("WindowsAzureActiveDirectoryIntegratedApp", "HideApp") } | ConvertTo-Json
-$response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')" -Body $tags
+$response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')" -Body $tags
 
 # Add note
 $notes = [pscustomobject]@{
     notes = "This application is used by Truesec SOC to manage custom detection rules in Defender XDR"
 } | ConvertTo-Json
-$response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')" -Body $notes
+$response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')" -Body $notes
 
 # Verify
-$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
 
 if ($response.notes -eq "This application is used by Truesec SOC to manage custom detection rules in Defender XDR" -and `
         $response.tags -contains "HideApp") {
