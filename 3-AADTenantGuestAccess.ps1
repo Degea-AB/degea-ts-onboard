@@ -139,6 +139,6 @@ foreach ($group in $groupSettings.groups) {
             justification = "Truesec setup"
         } | ConvertTo-Json -Depth 4
 
-        Invoke-MgGraphRequest -method POST -uri https://graph.microsoft.com/beta/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests -body $body
+        Invoke-MgGraphRequest -method POST -uri https://graph.microsoft.com/beta/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests -body $body -ErrorAction SilentlyContinue
     }
 }
