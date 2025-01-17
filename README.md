@@ -11,9 +11,14 @@ SOC License requirements: <br>
 -(EDR) Enough Defender for Endpoint Plan 2 licenses to change licensing in security portal to DfE P2. (DfE Plan 2 license or license containing DfE Plan 2) <br>
 [Endpoint subscription state](https://security.microsoft.com/securitysettings/endpoints/licenses) > Subscription state should be DfE P2, can be changed under "Manage subscription settings" <br>
 -Onboarded at least one device to Defender for Endpoint, ensure that EDR logs appear on device (timeline + advanced hunting)<br>
+-XDR license requirements, included in e.g. Security E5 addon:
+Entra ID Protection (P2)<br>
+Defender for Office (P2)<br>
+Defender for Identity<br>
+Defender for Cloud Apps<br>
 
-Download or clone the repo, then run scripts in order 1-4. PDF files are for reference.
+Download or clone the repo, then run scripts in order. PDF files are for reference.
 
-Due to a lack of programmatic support the steps in part 4 still need to be executed manually.
+Due to a lack of programmatic support the steps in Defender RBAC (part 4) still need to be executed manually.
 
-Part 5 (Degea Access) should only be run if Degea does not have regular admin access (GDAP).
+(Degea Access) should only be run if Degea does not have regular admin access (GDAP).
