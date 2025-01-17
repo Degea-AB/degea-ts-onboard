@@ -11,7 +11,7 @@ SOC License requirements: <br>
 -(EDR) Enough Defender for Endpoint Plan 2 licenses to change licensing in security portal to DfE P2. (DfE Plan 2 license or license containing DfE Plan 2) <br>
 [Endpoint subscription state](https://security.microsoft.com/securitysettings/endpoints/licenses) > Subscription state should be DfE P2, can be changed under "Manage subscription settings" <br>
 -Onboarded at least one device to Defender for Endpoint, ensure that EDR logs appear on device (timeline + advanced hunting)<br>
--XDR license requirements, included in e.g. Security E5 addon:
+-XDR license requirements, included in e.g. Security E5 addon:<br>
 Entra ID Protection (P2)<br>
 Defender for Office (P2)<br>
 Defender for Identity<br>
