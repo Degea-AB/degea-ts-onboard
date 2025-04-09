@@ -1,0 +1,5 @@
+Endpoints & Vulnerability Management, Active
+Email & Collaboration, Active
+Exchange Online permissions, Active
+Identity, Active
+Cloud Apps, Active
