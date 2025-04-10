@@ -17,8 +17,8 @@ Defender for Office (P2)<br>
 Defender for Identity<br>
 Defender for Cloud Apps<br>
 
-Download or clone the repo, then run scripts in order. PDF files are for reference.
-
-Due to a lack of programmatic support the steps in Defender RBAC (part 4) still need to be executed manually.
+Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.
+Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and validate
+Perform the steps in the remaining SOPs
 
 (Degea Access) should only be run if Degea does not have regular admin access (GDAP).
