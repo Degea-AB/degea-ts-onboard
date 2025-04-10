@@ -2,6 +2,14 @@
 # Company: Degea AB
 # Prerequisites: Global Administrator Role
 
+# This script will
+# 1. Create cross tenant access policy to Truesec SOC tenant (07d2f395-f69c-43ab-88a2-b82f1151042d)
+# 2. Consent to Truesec SOC sync app and edit properties on the app (650c28b2-db2e-4e95-8124-0d3410659df4), opens in browser
+# 3. Consent to Defender API access app and edit properties on the app (3bb658be-4eac-4832-baca-65fbde07f547), opens in browser
+# 4. Consent to custom detection app and edit properties on the app (5d051ad5-01ff-41de-8336-6962ea18a341), opens in browser
+# 5. Create groups for Truesec SOC and assign roles to the groups
+# 6. Enable and assign PIM for the group "Truesec SOC Admins PIM"
+
 #Graph
 Disconnect-MgGraph #Clear context
 $scopes = "Policy.ReadWrite.CrossTenantAccess", # Create cross tenant access policy
