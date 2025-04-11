@@ -66,17 +66,28 @@ else {
 }
 #endregion
 
-#region Truesec sync app
+#region Consent to apps
+# Truesec Custom detection app
+# Start URL in default browser
+Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
+
 # Truesec sync app
 # Start URL in default browser
 Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
 
-Write-Host -ForegroundColor Yellow "Press Enter once you have consented to the application"
+# Truesec Defender API access app
+# Start URL in default browser
+Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
+
+
+Write-Host -ForegroundColor Yellow "Press Enter once you have consented to all 3 applications"
 Pause
-Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principal is created."
+Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principals are created."
 Start-Sleep -Seconds 30
 
+#endregion
 
+#region Truesec sync app
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
 
 # Hide app
@@ -102,17 +113,6 @@ else {
 #endregion
 
 #region Defender API access app
-# Defender API access app
-# Start URL in default browser
-Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
-
-Write-Host -ForegroundColor Yellow "Press Enter once you have consented to the application"
-Pause
-Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principal is created."
-Start-Sleep -Seconds 30
-
-
-
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
 
 # Hide app
@@ -138,15 +138,6 @@ else {
 #endregion
 
 #region Custom detection app
-
-#Custom detection app
-# Start URL in default browser
-Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
-
-Write-Host -ForegroundColor Yellow "Press Enter once you have consented to the application"
-Pause
-Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principal is created."
-Start-Sleep -Seconds 30
 
 
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
@@ -210,14 +201,6 @@ function New-MailNickname {
 
     return $Result
 }
-
-#Graph
-$scopes = 'Group.ReadWrite.All', # Create groups
-'Application.Read.All', # Look up ID for ServicePrincipal
-'RoleManagement.ReadWrite.Directory', # Assign AAD Roles
-'PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup' # Privileged role assignment for groups (PIM)
-
-Connect-MgGraph -Scopes $scopes -ContextScope Process
 
 $groupSettings = Get-Content "$PSScriptRoot\3-AADTenantGuestAccess\GroupSettings.json" | ConvertFrom-Json
 
