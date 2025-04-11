@@ -4,6 +4,7 @@
 
 # file:
 $file = Read-Host "Enter the path to the URBAC settings file (e.g. C:\temp\URBACSettings.csv)"
+$file = $file -replace '"',''
 if (-not (Test-Path $file)) {
     Write-Host -ForegroundColor Red "File not found: $file"
     exit
