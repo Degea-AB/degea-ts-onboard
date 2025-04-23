@@ -87,6 +87,56 @@ Start-Sleep -Seconds 30
 
 #endregion
 
+#region Consent to apps - Verify & retry
+$missedConsent = $false
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
+if ($null -eq $response) {
+    $missedConsent = $true
+    Write-Host -ForegroundColor Red 'Consent to custom detection app failed, retrying'
+
+    #Retry consent
+    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
+    Write-host -ForegroundColor Yellow "Press Enter once you have consented to the custom detection app"
+    Pause
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to custom detection app found'
+}
+
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
+if($null -eq $response) {
+    $missedConsent = $true
+    Write-Host -ForegroundColor Red 'Consent to sync app failed, retrying'
+
+    #Retry consent
+    Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
+    Write-host -ForegroundColor Yellow "Press Enter once you have consented to the sync app"
+    Pause
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to sync app found'
+}
+
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
+if ($null -eq $response) {
+    $missedConsent = $true
+    Write-Host -ForegroundColor Red 'Consent to Defender API access app failed, retrying'
+
+    #Retry consent
+    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
+    Write-host -ForegroundColor Yellow "Press Enter once you have consented to the Defender API access app"
+    Pause
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to Defender API access app found'
+}
+
+if($missedConsent) {
+    Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principals are created."
+    Start-Sleep -Seconds 30
+}
+#endregion
+
 #region Truesec sync app
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
 
