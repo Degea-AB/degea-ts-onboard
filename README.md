@@ -15,8 +15,8 @@ Requires Microsoft.Graph module.
 Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 
-Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.<br>
-Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and validate
-Perform the steps in the remaining SOPs
+</br> Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.<br>
+</br>Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and run the script validate RBAC settings
+</br>Perform the steps in the remaining SOPs
 
 (Degea Access) should only be run if Degea does not have regular admin access (GDAP).
