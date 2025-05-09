@@ -2,6 +2,7 @@
 # Prerequisites
 Prerequisites have been detailed in this document:
 </br> https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx
+![alt text](https://github.com/Degea-AB/degea-ts-onboard/blob/main/Images/view_raw.png "Download DOCX file")
 
 # How-to
 Scripts are only tested in **Powershell v7** and later on Windows 10/11. <br><br>
