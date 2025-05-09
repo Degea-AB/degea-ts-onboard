@@ -6,6 +6,10 @@ Requires Microsoft.Graph module.
 ```
 Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
+# Prerequisites
+Prerequisites have been detailed in this document:
+</br> https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx
+
 SOC License requirements: <br>
 -At least Azure Active Premium Plan 2 level to enable PIM functionality. (One AAD Premium Plan 2 license) <br>
 -(EDR) Enough Defender for Endpoint Plan 2 licenses to change licensing in security portal to DfE P2. (DfE Plan 2 license or license containing DfE Plan 2) <br>
