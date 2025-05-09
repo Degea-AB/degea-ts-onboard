@@ -1,10 +1,8 @@
 # Degea / Truesec onboarding scripts
 # Prerequisites
 Prerequisites have been detailed in this document:
-</br> https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx
-</br> Click on view raw to download the document.
-</br>
-![alt text](https://github.com/Degea-AB/degea-ts-onboard/blob/main/Images/view_raw.png "Download DOCX file")
+</br> [https://github.com/Degea-AB/degea-ts-onboard/raw/refs/heads/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx]
+</br> 
 
 # How-to
 Scripts are only tested in **Powershell v7** and later on Windows 10/11. <br><br>
