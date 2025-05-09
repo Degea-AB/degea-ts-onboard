@@ -1,4 +1,9 @@
 # Degea / Truesec onboarding scripts
+# Prerequisites
+Prerequisites have been detailed in this document:
+</br> https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx
+
+# How-to
 Scripts are only tested in **Powershell v7** and later on Windows 10/11. <br><br>
 [Powershell 7 overview and download page Microsoft Learn](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3)
 
@@ -6,20 +11,6 @@ Requires Microsoft.Graph module.
 ```
 Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
-# Prerequisites
-Prerequisites have been detailed in this document:
-</br> https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-Prerequisites/MDR%20SOC%20Onboarding%20Prerequisites.docx
-
-SOC License requirements: <br>
--At least Azure Active Premium Plan 2 level to enable PIM functionality. (One AAD Premium Plan 2 license) <br>
--(EDR) Enough Defender for Endpoint Plan 2 licenses to change licensing in security portal to DfE P2. (DfE Plan 2 license or license containing DfE Plan 2) <br>
-[Endpoint subscription state](https://security.microsoft.com/securitysettings/endpoints/licenses) > Subscription state should be DfE P2, can be changed under "Manage subscription settings" <br>
--Onboarded at least one device to Defender for Endpoint, ensure that EDR logs appear on device (timeline + advanced hunting)<br>
--XDR license requirements, included in e.g. Security E5 addon:<br>
-Entra ID Protection (P2)<br>
-Defender for Office (P2)<br>
-Defender for Identity<br>
-Defender for Cloud Apps<br>
 
 Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.<br>
 Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and validate
