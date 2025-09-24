@@ -13,6 +13,6 @@ $content = Get-Content $file
 $startRow = $content.IndexOf("Activation status") + 1
 $activatedWorkloads = $content[$startRow..($content.Length - 1)]
 
-$activatedWorkloads | Set-Content .\workloads.txt
+$activatedWorkloads | Set-Content $PSScriptRoot\workloads.txt
 $roles = $content[0..($startRow - 2)] | Where-Object { $_ -ne "" } | Select-Object -Skip 1 | ConvertFrom-Csv -Delimiter ','
-$roles | Select-Object "Role name",@{l="Permissions";e={($_."Permissions" -split ';').Trim()}},"Assigned users and groups" | ConvertTo-Json -Depth 4 | Set-content .\urbacroles.json
+$roles | Select-Object "Role name",@{l="Permissions";e={($_."Permissions" -split ';').Trim()}},"Assigned users and groups" | ConvertTo-Json -Depth 4 | Set-content $PSScriptRoot\urbacroles.json

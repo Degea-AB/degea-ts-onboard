@@ -2,12 +2,15 @@
   {
     "Role name": "Admins",
     "Permissions": [
-      "Security data basics (read)",
-      "Response (manage)",
       "Alerts (manage)",
+      "Security data basics (read)",
       "Basic live response (manage)",
+      "Response (manage)",
       "Advanced live response (manage)",
       "File collection (manage)",
+      "Email & collaboration quarantine (manage)",
+      "Email & collaboration metadata (read)",
+      "Email & collaboration advanced actions (manage)",
       "Application handling (manage)",
       "Security baselines assessment (manage)",
       "Exception handling (manage)",
@@ -21,11 +24,34 @@
       "Core security settings (manage)",
       "Core security settings (read)",
       "Detection tuning (manage)",
+      "Discovery management (manage)",
+      "Discovery management (read)",
+      "Private Solutions (read)",
+      "Private Solutions (write)",
       "System settings (Read and manage)",
+      "System settings (Read-only)",
       "Security settings (Select all permissions)",
       "Security settings (Read-only)"
     ],
     "Assigned users and groups": "Truesec SOC Admins PIM"
+  },
+  {
+    "Role name": "Readers",
+    "Permissions": [
+      "Security data basics (read)",
+      "Security Copilot (read)",
+      "Email & collaboration metadata (read)",
+      "Exposure Management (read)",
+      "Vulnerability management (read)",
+      "Vulnerability management (read)",
+      "Authorization (Read-only)",
+      "Core security settings (read)",
+      "Discovery management (read)",
+      "Private Solutions (read)",
+      "Security settings (Read-only)",
+      "System settings (Read-only)"
+    ],
+    "Assigned users and groups": "Truesec SOC Readers"
   },
   {
     "Role name": "Operators",
@@ -33,11 +59,15 @@
       "Alerts (manage)",
       "Security data basics (read)",
       "Response (manage)",
+      "Email & collaboration metadata (read)",
       "Exposure Management (read)",
       "Vulnerability management (read)",
       "Vulnerability management (read)",
       "Authorization (Read-only)",
       "Core security settings (read)",
+      "Discovery management (read)",
+      "Private Solutions (read)",
+      "System settings (Read-only)",
       "Security settings (Read-only)"
     ],
     "Assigned users and groups": "Truesec SOC Operators"
@@ -50,28 +80,19 @@
       "Response (manage)",
       "Basic live response (manage)",
       "File collection (manage)",
+      "Email & collaboration quarantine (manage)",
+      "Email & collaboration metadata (read)",
       "Exposure Management (read)",
       "Vulnerability management (read)",
       "Vulnerability management (read)",
       "Authorization (Read-only)",
       "Core security settings (read)",
+      "Discovery management (read)",
+      "Private Solutions (read)",
+      "System settings (Read-only)",
       "Security settings (Read-only)"
     ],
     "Assigned users and groups": "Truesec SOC Privileged Operators"
-  },
-  {
-    "Role name": "Readers",
-    "Permissions": [
-      "Security data basics (read)",
-      "Security Copilot (read)",
-      "Exposure Management (read)",
-      "Vulnerability management (read)",
-      "Vulnerability management (read)",
-      "Authorization (Read-only)",
-      "Core security settings (read)",
-      "Security settings (Read-only)"
-    ],
-    "Assigned users and groups": "Truesec SOC Readers"
   },
   {
     "Role name": "Live Responders",
@@ -82,14 +103,54 @@
       "Basic live response (manage)",
       "Advanced live response (manage)",
       "File collection (manage)",
+      "Email & collaboration quarantine (manage)",
+      "Email & collaboration metadata (read)",
+      "Email & collaboration advanced actions (manage)",
       "Exposure Management (read)",
       "Vulnerability management (read)",
       "Vulnerability management (read)",
       "Authorization (Read-only)",
+      "Detection tuning (manage)",
       "Core security settings (read)",
       "Security settings (Read-only)",
-      "Detection tuning (manage)"
+      "System settings (Read-only)"
     ],
     "Assigned users and groups": "Truesec SOC Live Responders"
+  },
+  {
+    "Role name": "Admins",
+    "Permissions": [
+      "Alerts (manage)",
+      "Security data basics (read)",
+      "Response (manage)",
+      "Basic live response (manage)",
+      "Advanced live response (manage)",
+      "File collection (manage)",
+      "Email & collaboration quarantine (manage)",
+      "Email & collaboration metadata (read)",
+      "Email & collaboration advanced actions (manage)",
+      "Application handling (manage)",
+      "Security baselines assessment (manage)",
+      "Exception handling (manage)",
+      "Remediation handling (manage)",
+      "Exposure Management (manage)",
+      "Exposure Management (read)",
+      "Vulnerability management (read)",
+      "Vulnerability management (read)",
+      "Authorization (Read and manage)",
+      "Authorization (Read-only)",
+      "Core security settings (manage)",
+      "Core security settings (read)",
+      "Detection tuning (manage)",
+      "Discovery management (manage)",
+      "Discovery management (read)",
+      "Private Solutions (read)",
+      "Private Solutions (write)",
+      "System settings (Read and manage)",
+      "System settings (Read-only)",
+      "Security settings (Select all permissions)",
+      "Security settings (Read-only)"
+    ],
+    "Assigned users and groups": "Truesec SOC Admins PIM"
   }
 ]
