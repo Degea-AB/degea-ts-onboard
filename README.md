@@ -1,7 +1,7 @@
 # Degea / Truesec onboarding scripts
 # Prerequisites
 Prerequisites have been detailed in this document:
-</br> [https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-DEG%20SOP%20-%20Prerequisites.pdf](0-DEG SOP - Prerequisites.pdf)
+</br> [0-DEG SOP - Prerequisites.pdf](https://github.com/Degea-AB/degea-ts-onboard/blob/main/0-DEG%20SOP%20-%20Prerequisites.pdf)
 </br> 
 
 # How-to
