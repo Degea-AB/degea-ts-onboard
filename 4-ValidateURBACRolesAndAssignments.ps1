@@ -2,11 +2,21 @@
 # This script will validate the URBAC roles and assignments against the URBAC settings
 # Export the roles from the permissions page and input the file into the script
 
-# file:
-$file = Read-Host "Enter the path to the URBAC settings file (e.g. C:\temp\URBACSettings.csv)"
-$file = $file -replace '"',''
-if (-not (Test-Path $file)) {
-    Write-Host -ForegroundColor Red "File not found: $file"
+# check if latest file in downloads folder matches "yyyy-MM-dd_URBAC_Roles_Export", select latest file
+$downloadsFolder = $env:USERPROFILE + "\Downloads"
+$latestFile = Get-ChildItem -Path $downloadsFolder | Sort-Object LastWriteTime -Descending | Where-Object { $_.Name -match '^\d{4}-\d{2}-\d{2}_URBAC_Roles_Export.*\.csv$' } | Select-Object -First 1
+
+if ($null -ne $latestFile) {
+    $useLatest = Read-Host "Found latest URBAC roles export file: $($latestFile.FullName). Do you want to use this file? (Y/N)"
+    if ($useLatest -eq "Y" -or $useLatest -eq "y") {
+        $file = $latestFile.FullName
+    }
+}
+elseif ($null -eq $latestFile) {
+    $file = Read-Host "Enter the path to the URBAC roles export file (e.g. C:\temp\URBACRolesExport.csv)"
+}
+if ($null -eq $file -or $file -eq "") {
+    Write-Host -ForegroundColor Red "No file provided. Exiting script."
     exit
 }
 
