@@ -1,123 +1,30 @@
 {
-  "Conditions": {
-    "Applications": {
-      "ApplicationFilter": {
-        "Mode": null,
-        "Rule": null
-      },
-      "ExcludeApplications": [],
-      "IncludeApplications": [
-        "All"
-      ],
-      "IncludeAuthenticationContextClassReferences": [],
-      "IncludeUserActions": []
-    },
-    "AuthenticationFlows": {
-      "TransferMethods": null
-    },
-    "ClientAppTypes": [
-      "all"
-    ],
-    "ClientApplications": {
-      "ExcludeServicePrincipals": null,
-      "IncludeServicePrincipals": null,
-      "ServicePrincipalFilter": {
-        "Mode": null,
-        "Rule": null
+  "displayName": "CA406-TruesecSOC-IdentityProtection-AllApps-AnyPlatform-CompliantAndPhishResistantMFA",
+  "state": "disabled",
+  "conditions": {
+    "users": {
+      "includeGuestsOrExternalUsers": {
+        "guestOrExternalUserTypes": "b2bCollaborationGuest",
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessEnumeratedExternalTenants",
+          "membershipKind": "enumerated",
+          "members": [ "07d2f395-f69c-43ab-88a2-b82f1151042d" ]
+        }
       }
     },
-    "Devices": {
-      "DeviceFilter": {
-        "Mode": null,
-        "Rule": null
-      }
+    "applications": {
+      "includeApplications": [ "All" ]
     },
-    "InsiderRiskLevels": null,
-    "Locations": {
-      "ExcludeLocations": null,
-      "IncludeLocations": null
+    "platforms": {
+      "includePlatforms": [ "all" ]
     },
-    "Platforms": {
-      "ExcludePlatforms": null,
-      "IncludePlatforms": null
-    },
-    "ServicePrincipalRiskLevels": [],
-    "SignInRiskLevels": [],
-    "UserRiskLevels": [],
-    "Users": {
-      "ExcludeGroups": [],
-      "ExcludeGuestsOrExternalUsers": {
-        "ExternalTenants": {
-          "MembershipKind": null
-        },
-        "GuestOrExternalUserTypes": null
-      },
-      "ExcludeRoles": [],
-      "ExcludeUsers": [],
-      "IncludeGroups": [],
-      "IncludeGuestsOrExternalUsers": {
-        "ExternalTenants": {
-          "MembershipKind": "enumerated"
-        },
-        "GuestOrExternalUserTypes": "b2bCollaborationGuest"
-      },
-      "IncludeRoles": [],
-      "IncludeUsers": []
+    "clientAppTypes": [ "all" ]
+  },
+  "grantControls": {
+    "operator": "AND",
+    "builtInControls": [ "compliantDevice" ],
+    "authenticationStrength": {
+      "id": "00000000-0000-0000-0000-000000000004"
     }
-  },
-  "CreatedDateTime": "2026-03-23T13:26:28.3819256Z",
-  "Description": null,
-  "DisplayName": "CA406-TruesecSOC-IdentityProtection-AllApps-AnyPlatform-CompliantAndPhishResistantMFA",
-  "GrantControls": {
-    "AuthenticationStrength": {
-      "AllowedCombinations": [
-        "windowsHelloForBusiness",
-        "fido2",
-        "x509CertificateMultiFactor"
-      ],
-      "CombinationConfigurations": [],
-      "CreatedDateTime": "2021-12-01T08:00:00Z",
-      "Description": "Phishing-resistant, Passwordless methods for the strongest authentication, such as a FIDO2 security key",
-      "DisplayName": "Phishing-resistant MFA",
-      "Id": "00000000-0000-0000-0000-000000000004",
-      "ModifiedDateTime": "2021-12-01T08:00:00Z",
-      "PolicyType": "builtIn",
-      "RequirementsSatisfied": "mfa"
-    },
-    "BuiltInControls": [
-      "compliantDevice"
-    ],
-    "CustomAuthenticationFactors": [],
-    "Operator": "AND",
-    "TermsOfUse": []
-  },
-  "Id": "dad02cd1-ed05-44d1-a6a1-997a8585003d",
-  "ModifiedDateTime": null,
-  "SessionControls": {
-    "ApplicationEnforcedRestrictions": {
-      "IsEnabled": null
-    },
-    "CloudAppSecurity": {
-      "CloudAppSecurityType": null,
-      "IsEnabled": null
-    },
-    "DisableResilienceDefaults": null,
-    "PersistentBrowser": {
-      "IsEnabled": null,
-      "Mode": null
-    },
-    "SecureSignInSession": {
-      "IsEnabled": null
-    },
-    "SignInFrequency": {
-      "AuthenticationType": null,
-      "FrequencyInterval": null,
-      "IsEnabled": null,
-      "Type": null,
-      "Value": null
-    }
-  },
-  "State": "enabled",
-  "TemplateId": null,
-  "AdditionalProperties": {}
+  }
 }

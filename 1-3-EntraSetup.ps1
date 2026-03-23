@@ -40,8 +40,8 @@ $response.b2bCollaborationInbound.Keys | ForEach-Object {
             $errorCount++
             $errorLocation += [PSCustomObject]@{
                 "Parent Setting" = "B2B Collaboration Inbound"
-                Value   = "$key > $($_): $($response.b2bCollaborationInbound.$key.$_)"
-                ExpectedValue = $xtSettingsPSObj.b2bCollaborationInbound.$key.$_
+                Value            = "$key > $($_): $($response.b2bCollaborationInbound.$key.$_)"
+                ExpectedValue    = $xtSettingsPSObj.b2bCollaborationInbound.$key.$_
             }
         }
     }
@@ -51,8 +51,8 @@ $response.inboundTrust.Keys | ForEach-Object {
         $errorCount++
         $errorLocation += [PSCustomObject]@{
             "Parent Setting" = "Inbound Trust"
-            Value   = "$($_): $($response.inboundTrust.$_)"
-            ExpectedValue = $xtSettingsPSObj.inboundTrust.$_
+            Value            = "$($_): $($response.inboundTrust.$_)"
+            ExpectedValue    = $xtSettingsPSObj.inboundTrust.$_
         }
     }
 }
@@ -105,7 +105,7 @@ else {
 }
 
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
-if($null -eq $response) {
+if ($null -eq $response) {
     $missedConsent = $true
     Write-Host -ForegroundColor Red 'Consent to sync app failed, retrying'
 
@@ -132,7 +132,7 @@ else {
     Write-Host -ForegroundColor Green 'Consent to Defender API access app found'
 }
 
-if($missedConsent) {
+if ($missedConsent) {
     Write-Host -ForegroundColor Yellow "Pausing for 30 seconds while service principals are created."
     Start-Sleep -Seconds 30
 }
@@ -155,7 +155,7 @@ $response = Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.co
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
 
 if ($response.notes -eq "This application is used to synchronize Truesec SOC users and group memberships." -and `
-    $response.tags -contains "HideApp") {
+        $response.tags -contains "HideApp") {
     Write-Host -ForegroundColor Green 'Settings applied successfully to service principal'
 } 
 else {
@@ -217,23 +217,18 @@ else {
 #endregion
 
 #region Conditional Access policy
-$caPolicyTemplate = Get-Content "$PSScriptRoot\1-CrossTenantSetup\ts-ca-template.json" | ConvertFrom-Json
+$caPolicyTemplate = Get-Content ".\1-CrossTenantSetup\ts-ca-template.json" -Raw
+$caPolicyTemplateObj = $caPolicyTemplate | ConvertFrom-Json
 
-# Remove read-only/system properties if they exist
-$null = $caPolicyTemplate.PSObject.Properties.Remove('id')
-$null = $caPolicyTemplate.PSObject.Properties.Remove('createdDateTime')
-$null = $caPolicyTemplate.PSObject.Properties.Remove('modifiedDateTime')
-
-$displayName = $caPolicyTemplate.displayName
+$displayName = $caPolicyTemplateObj.displayName
 
 # Skip if it exists
-if(Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'") {
+if (Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'") {
     Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' already exists, skipping creation"
-}
-else {
+} else {
     Write-Host -ForegroundColor Cyan "Creating Conditional Access policy '$displayName'"
-
-    New-MgIdentityConditionalAccessPolicy -BodyParameter $caPolicyTemplate | Out-Null
+    
+    $new = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies" -Body $caPolicyTemplate -ContentType "application/json"
 }
 # Verify creation
 $caPolicy = Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'"
@@ -245,8 +240,7 @@ if ($caPolicy) {
     if ($caPolicy.state -ne "enabled") {
         Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' is created but not enabled. Please enable the policy for it to take effect."
     }
-}
-else {
+} else {
     Write-Host -ForegroundColor Red "Failed to create Conditional Access policy '$displayName'"
 }
 #endregion
@@ -319,7 +313,7 @@ foreach ($group in $groupSettings.groups) {
 
     #Assign AAD roles (if it has a value)
     if ($group.AADRoleId) {
-        foreach($role in $group.AADRoleId) {
+        foreach ($role in $group.AADRoleId) {
             # Activate role template if it is not activated
             if ($allRoles.roleTemplateId -notcontains $role) {
                 $body = [PSCustomObject]@{
