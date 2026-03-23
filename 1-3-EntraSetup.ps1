@@ -16,7 +16,8 @@ $scopes = "Policy.ReadWrite.CrossTenantAccess", # Create cross tenant access pol
 "Application.ReadWrite.All", # Create applications
 "Group.ReadWrite.All", # Create groups
 "RoleManagement.ReadWrite.Directory", # Assign AAD Roles
-"PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup" # Privileged role assignment for groups (PIM)
+"PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup", # Privileged role assignment for groups (PIM)
+"Policy.ReadWrite.ConditionalAccess" # To import conditional access policies from template
 Connect-MgGraph -Scopes $scopes -ContextScope Process
 
 #region CrossTenantAccessPolicy
@@ -215,6 +216,40 @@ else {
 
 #endregion
 
+#region Conditional Access policy
+$caPolicyTemplate = Get-Content "$PSScriptRoot\1-CrossTenantSetup\ts-ca-template.json" | ConvertFrom-Json
+
+# Remove read-only/system properties if they exist
+$null = $caPolicyTemplate.PSObject.Properties.Remove('id')
+$null = $caPolicyTemplate.PSObject.Properties.Remove('createdDateTime')
+$null = $caPolicyTemplate.PSObject.Properties.Remove('modifiedDateTime')
+
+$displayName = $caPolicyTemplate.displayName
+
+# Skip if it exists
+if(Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'") {
+    Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' already exists, skipping creation"
+}
+else {
+    Write-Host -ForegroundColor Cyan "Creating Conditional Access policy '$displayName'"
+
+    New-MgIdentityConditionalAccessPolicy -BodyParameter $caPolicyTemplate | Out-Null
+}
+# Verify creation
+$caPolicy = Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'"
+
+if ($caPolicy) {
+    Write-Host -ForegroundColor Green "Conditional Access policy '$displayName' created successfully"
+    
+    # If policy is not enabled, remind user to enable it
+    if ($caPolicy.state -ne "enabled") {
+        Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' is created but not enabled. Please enable the policy for it to take effect."
+    }
+}
+else {
+    Write-Host -ForegroundColor Red "Failed to create Conditional Access policy '$displayName'"
+}
+#endregion
 
 #region Truesec SOC groups
 
