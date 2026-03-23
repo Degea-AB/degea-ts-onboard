@@ -238,7 +238,7 @@ else {
     else {
         Write-Host -ForegroundColor Cyan "Creating Conditional Access policy '$displayName'"
     
-        $new = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies" -Body $caPolicyTemplate -ContentType "application/json"
+        Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies" -Body $caPolicyTemplate -ContentType "application/json" | Out-Null
     }
     # Verify creation
     $caPolicy = Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'"
