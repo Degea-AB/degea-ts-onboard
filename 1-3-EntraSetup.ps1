@@ -217,31 +217,43 @@ else {
 #endregion
 
 #region Conditional Access policy
-$caPolicyTemplate = Get-Content ".\1-CrossTenantSetup\ts-ca-template.json" -Raw
-$caPolicyTemplateObj = $caPolicyTemplate | ConvertFrom-Json
+Write-Host -ForegroundColor Cyan "Do you want to create the Conditional Access policy for Truesec SOC? (Y/N)"
 
-$displayName = $caPolicyTemplateObj.displayName
+$caVerification = Read-Host -Prompt "Enter Y to create the policy, or N to skip"
 
-# Skip if it exists
-if (Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'") {
-    Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' already exists, skipping creation"
-} else {
-    Write-Host -ForegroundColor Cyan "Creating Conditional Access policy '$displayName'"
-    
-    $new = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies" -Body $caPolicyTemplate -ContentType "application/json"
+if ($caVerification -ne "Y") {
+    Write-Host -ForegroundColor Yellow "Skipping Conditional Access policy creation"
 }
-# Verify creation
-$caPolicy = Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'"
+else {
+    Write-Host -ForegroundColor Cyan "Creating Conditional Access policy for Truesec SOC"
+    $caPolicyTemplate = Get-Content ".\1-CrossTenantSetup\ts-ca-template.json" -Raw
+    $caPolicyTemplateObj = $caPolicyTemplate | ConvertFrom-Json
 
-if ($caPolicy) {
-    Write-Host -ForegroundColor Green "Conditional Access policy '$displayName' created successfully"
-    
-    # If policy is not enabled, remind user to enable it
-    if ($caPolicy.state -ne "enabled") {
-        Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' is created but not enabled. Please enable the policy for it to take effect."
+    $displayName = $caPolicyTemplateObj.displayName
+
+    # Skip if it exists
+    if (Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'") {
+        Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' already exists, skipping creation"
     }
-} else {
-    Write-Host -ForegroundColor Red "Failed to create Conditional Access policy '$displayName'"
+    else {
+        Write-Host -ForegroundColor Cyan "Creating Conditional Access policy '$displayName'"
+    
+        $new = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies" -Body $caPolicyTemplate -ContentType "application/json"
+    }
+    # Verify creation
+    $caPolicy = Get-MgIdentityConditionalAccessPolicy -Filter "displayName eq '$displayName'"
+
+    if ($caPolicy) {
+        Write-Host -ForegroundColor Green "Conditional Access policy '$displayName' created successfully"
+    
+        # If policy is not enabled, remind user to enable it
+        if ($caPolicy.state -ne "enabled") {
+            Write-Host -ForegroundColor Yellow "Conditional Access policy '$displayName' is created but not enabled. Please enable the policy for it to take effect."
+        }
+    }
+    else {
+        Write-Host -ForegroundColor Red "Failed to create Conditional Access policy '$displayName'"
+    }
 }
 #endregion
 
