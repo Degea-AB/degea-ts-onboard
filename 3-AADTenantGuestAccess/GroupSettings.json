@@ -7,7 +7,8 @@
         "isAssignableToRole": true,
         "AADRoles": ["Security Reader"],
         "AADRoleId": ["5d6b6bb7-de71-4623-b4af-96380a352509"],
-        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4",
+        "URBACRoles": "Readers"
       },
       {
         "displayName": "Truesec SOC Operators",
@@ -22,7 +23,8 @@
           "5f2222b1-57c3-48ba-8ad5-d4759f1fde6f",
           "892c5842-a9a6-463a-8041-72aa08ca3cf6"
         ],
-        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4",
+        "URBACRoles": "Operators"
       },
       {
         "displayName": "Truesec SOC Live Responders",
@@ -31,7 +33,8 @@
         "isAssignableToRole": false,
         "AADRoles": [],
         "AADRoleId": [],
-        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4",
+        "URBACRoles": "Live Responders"
       },
       {
         "displayName": "Truesec SOC Privileged Operators",
@@ -40,7 +43,8 @@
         "isAssignableToRole": false,
         "AADRoles": [],
         "AADRoleId": [],
-        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4"
+        "OwnersSP": "650c28b2-db2e-4e95-8124-0d3410659df4",
+        "URBACRoles": "Privileged Operators"
       },
       {
         "displayName": "Truesec SOC Admins",
@@ -58,7 +62,8 @@
         "isAssignableToRole": true,
         "AADRoles": [],
         "AADRoleId": [],
-        "OwnersSP": null
+        "OwnersSP": null,
+        "URBACRoles": "Admins"
       }
     ]
   }

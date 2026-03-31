@@ -1,0 +1,26 @@
+{
+  "displayName": "Readers",
+  "description": "Custom role with read privileges in M365 Defender",
+  "permissions": {
+    "Security operations": [
+      "Security data basics (read)"
+    ],
+    "Raw data (Email & collaboration)": [
+      "Email & collaboration metadata (read)"
+    ],
+    "Security posture": [
+      "Vulnerability management (read)",
+      "Secure Score (read)"
+    ],
+    "Authorization and settings": [
+      "Authorization (Read-only)",
+      "Security settings → Core security settings (read)",
+      "System settings (Read-only)"
+    ]
+  },
+  "assignment": {
+    "name": "Full XDR Monitoring",
+    "dataSources": "All",
+    "groupRef": "SOC Readers"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "displayName": "Operators",
+  "description": "SOC operators - manage alerts/response & quarantine, metadata read",
+  "permissions": {
+    "Security operations": [
+      "Security data basics (read)",
+      "Alerts (manage)",
+      "Response (manage)",
+      "Basic live response (manage)",
+      "Email & collaboration quarantine (manage)"
+    ],
+    "Raw data (Email & collaboration)": [
+      "Email & collaboration metadata (read)"
+    ],
+    "Security posture": [
+      "Vulnerability management (read)",
+      "Secure Score (read)"
+    ]
+  },
+  "assignment": {
+    "name": "Full XDR Monitoring",
+    "dataSources": "All",
+    "groupRef": "SOC Operators"
+  }
+}

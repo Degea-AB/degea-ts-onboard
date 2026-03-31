@@ -1,0 +1,33 @@
+{
+  "displayName": "Live Responders",
+  "description": "Tier with advanced live response and mail-flow actions",
+  "permissions": {
+    "Security operations": [
+      "Security data basics (read)",
+      "Alerts (manage)",
+      "Response (manage)",
+      "Basic live response (manage)",
+      "Advanced live response (manage)",
+      "File collection (manage)",
+      "Email & collaboration quarantine (manage)",
+      "Email & collaboration advanced actions (manage)"
+    ],
+    "Raw data (Email & collaboration)": [
+      "Email & collaboration metadata (read)",
+      "Email & collaboration content (read)"
+    ],
+    "Security posture": [
+      "Vulnerability management (read)",
+      "Remediation handling (manage)",
+      "Secure Score (read)"
+    ],
+    "Authorization and settings": [
+      "System settings (Read and manage)"
+    ]
+  },
+  "assignment": {
+    "name": "Full XDR Monitoring",
+    "dataSources": "All",
+    "groupRef": "SOC Live Responders"
+  }
+}
