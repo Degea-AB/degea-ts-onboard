@@ -178,7 +178,7 @@ function Get-ExistingRoleActions {
   return @($actions | Where-Object { $_ } | Sort-Object -Unique)
 }
 
-function Ensure-RoleDefinition {
+function New-RoleDefinition {
   param(
     [Parameter(Mandatory)]
     [string]$DisplayName,
@@ -256,7 +256,7 @@ function Ensure-RoleDefinition {
   return $created.id
 }
 
-function Ensure-RoleAssignment {
+function New-RoleAssignment {
   param(
     [Parameter(Mandatory)]
     [string]$RoleDefinitionId,
@@ -423,7 +423,7 @@ try {
     $groupObjectId = Resolve-GroupObjectId -DisplayName $rc.Assignment.groupRef
     Write-Host " - PrincipalId: $groupObjectId"
 
-    $roleDefId = Ensure-RoleDefinition `
+    $roleDefId = New-RoleDefinition `
       -DisplayName $rc.DisplayName `
       -Description $rc.Description `
       -AllowedResourceActions $rc.AllowedResourceActions
@@ -435,7 +435,7 @@ try {
 
     $dataSources = if ($rc.Assignment.dataSources -eq 'All') { 'All' } else { 'Specific' }
 
-    Ensure-RoleAssignment `
+    New-RoleAssignment `
       -RoleDefinitionId $roleDefId `
       -AssignmentName $rc.Assignment.name `
       -GroupObjectId $groupObjectId `

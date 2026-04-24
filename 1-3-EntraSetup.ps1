@@ -99,8 +99,8 @@ else {
 # Check if it already exists, if not, start URL in default browser
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
 if ($null -eq $response) {
-     Write-Host -ForegroundColor Yellow "Consent to custom detection app not found, starting consent flow in browser..."
-     Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
+    Write-Host -ForegroundColor Yellow "Consent to custom detection app not found, starting consent flow in browser..."
+    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
 }
 else {
     Write-Host -ForegroundColor Green 'Consent to custom detection app already consented'
@@ -110,8 +110,8 @@ else {
 # Check if it already exists, if not, start URL in default browser
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
 if ($null -eq $response) {
-     Write-Host -ForegroundColor Yellow "Consent to sync app not found, starting consent flow in browser..."
-     Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
+    Write-Host -ForegroundColor Yellow "Consent to sync app not found, starting consent flow in browser..."
+    Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
 }
 else {
     Write-Host -ForegroundColor Green 'Consent to sync app already consented'
@@ -121,8 +121,8 @@ else {
 # Check if it already exists, if not, start URL in default browser
 $response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
 if ($null -eq $response) {
-     Write-Host -ForegroundColor Yellow "Consent to Defender API access app not found, starting consent flow in browser..."
-     Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
+    Write-Host -ForegroundColor Yellow "Consent to Defender API access app not found, starting consent flow in browser..."
+    Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
 }
 else {
     Write-Host -ForegroundColor Green 'Consent to Defender API access app already consented'
@@ -371,10 +371,18 @@ foreach ($group in $groupSettings.groups) {
                 $existingGroup | Add-Member -NotePropertyName $property -NotePropertyValue $groupObject.$property -Force
             }
         }
+        if ($updateGroup) {
+            $body = $existingGroup | ConvertTo-Json
+            Invoke-MgGraphRequest -Method PATCH -Uri "https://graph.microsoft.com/v1.0/groups/$($existingGroup.id)" -Body $body
+            Write-Host -ForegroundColor Green "Group '$($groupObject.displayName)' updated successfully"
+        }
+        else {
+            Write-Host -ForegroundColor Green "Group '$($groupObject.displayName)' already has the correct settings"
+        }
     }
     else {
         Write-Host -ForegroundColor Cyan "Creating group '$($groupObject.displayName)'"
-         $groupResponse = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/groups" -Body $body
+        $groupResponse = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/groups" -Body $body
     }
 
     #Add owners (if it has a value)
