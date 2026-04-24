@@ -1,3 +1,5 @@
+#Requires -Version 7.2
+
 # Author: Thomas Olenfalk
 # Company: Degea AB
 # Prerequisites: Global Administrator Role
@@ -9,6 +11,31 @@
 # 4. Consent to custom detection app and edit properties on the app (5d051ad5-01ff-41de-8336-6962ea18a341), opens in browser
 # 5. Create groups for Truesec SOC and assign roles to the groups
 # 6. Enable and assign PIM for the group "Truesec SOC Admins PIM"
+
+#region Validate environment
+#Module check
+if (-not (Get-Module -Name Microsoft.Graph -ListAvailable -ErrorAction SilentlyContinue)) {
+    Write-Host -ForegroundColor Yellow "Microsoft Graph PowerShell SDK is not installed. Installing..."
+    Install-Module -Name Microsoft.Graph -Scope CurrentUser -Force
+}
+
+#Local files check
+$requiredFiles = @(
+    "$PSScriptRoot\1-CrossTenantSetup\crossTenantSettings.json",
+    "$PSScriptRoot\3-AADTenantGuestAccess\GroupSettings.json",
+    "$PSScriptRoot\1-CrossTenantSetup\ts-ca-template.json"
+)
+foreach ($file in $requiredFiles) {
+    if (-not (Test-Path -Path $file)) {
+        Write-Host -ForegroundColor Red "Required file '$file' not found. Please make sure all required files are in place before running the script."
+        Write-Host -ForegroundColor Cyan "Make sure to download the repository in its entirety and not just the script file to ensure all required files are present."
+        Write-Host -ForegroundColor Red "Script execution stopped."
+        exit
+    }
+}
+
+
+#endregion
 
 #Graph
 Disconnect-MgGraph #Clear context
@@ -69,17 +96,37 @@ else {
 
 #region Consent to apps
 # Truesec Custom detection app
-# Start URL in default browser
-Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
+# Check if it already exists, if not, start URL in default browser
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{5d051ad5-01ff-41de-8336-6962ea18a341}')"
+if ($null -eq $response) {
+     Write-Host -ForegroundColor Yellow "Consent to custom detection app not found, starting consent flow in browser..."
+     Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=5d051ad5-01ff-41de-8336-6962ea18a341"
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to custom detection app already consented'
+}
 
 # Truesec sync app
-# Start URL in default browser
-Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
+# Check if it already exists, if not, start URL in default browser
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{650c28b2-db2e-4e95-8124-0d3410659df4}')"
+if ($null -eq $response) {
+     Write-Host -ForegroundColor Yellow "Consent to sync app not found, starting consent flow in browser..."
+     Start-Process "https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=650c28b2-db2e-4e95-8124-0d3410659df4&scope=https://graph.microsoft.com/.default"
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to sync app already consented'
+}
 
 # Truesec Defender API access app
-# Start URL in default browser
-Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
-
+# Check if it already exists, if not, start URL in default browser
+$response = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/v1.0/servicePrincipals(appid='{3bb658be-4eac-4832-baca-65fbde07f547}')"
+if ($null -eq $response) {
+     Write-Host -ForegroundColor Yellow "Consent to Defender API access app not found, starting consent flow in browser..."
+     Start-Process "https://login.microsoftonline.com/common/adminconsent?client_id=3bb658be-4eac-4832-baca-65fbde07f547"
+}
+else {
+    Write-Host -ForegroundColor Green 'Consent to Defender API access app already consented'
+}
 
 Write-Host -ForegroundColor Yellow "Press Enter once you have consented to all 3 applications"
 Pause

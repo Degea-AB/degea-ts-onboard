@@ -1,6 +1,30 @@
+#Requires -Version 7.2
+
 # Run this script after setting up the URBAC roles and assignments in the URBAC settings
 # This script will validate the URBAC roles and assignments against the URBAC settings
 # Export the roles from the permissions page and input the file into the script
+
+#region Validate environment
+#Module check
+if (-not (Get-Module -Name Microsoft.Graph -ListAvailable -ErrorAction SilentlyContinue)) {
+    Write-Host -ForegroundColor Yellow "Microsoft Graph PowerShell SDK is not installed. Installing..."
+    Install-Module -Name Microsoft.Graph -Scope CurrentUser -Force
+}
+
+#Local files check
+$requiredFiles = @(
+    "$PSScriptRoot\4-URBAC_Settings\workloads.txt",
+    "$PSScriptRoot\4-URBAC_Settings\urbacroles.json"
+)
+foreach ($file in $requiredFiles) {
+    if (-not (Test-Path -Path $file)) {
+        Write-Host -ForegroundColor Red "Required file '$file' not found. Please make sure all required files are in place before running the script."
+        Write-Host -ForegroundColor Cyan "Make sure to download the repository in its entirety and not just the script file to ensure all required files are present."
+        Write-Host -ForegroundColor Red "Script execution stopped."
+        exit
+    }
+}
+#endregion
 
 # check if latest file in downloads folder matches "yyyy-MM-dd_URBAC_Roles_Export", select latest file
 $downloadsFolder = $env:USERPROFILE + "\Downloads"
