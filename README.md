@@ -18,7 +18,5 @@ Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 .\4-CreateURBACRolesAndAssignments.ps1 -RunMode Setup -AllowCreateMissing
 ```
-</br>Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and run the script validate RBAC settings
+</br>Export the roles from XDR permission page and run the script .\4-ValidateURBACRolesAndAssignments.ps1 to validate all workloads are enabled.
 </br>Perform the steps in the remaining SOPs
-
-(Degea Access) should only be run if Degea does not have regular admin access (GDAP).
