@@ -13,10 +13,10 @@ Requires Microsoft.Graph module.
 Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 
-</br> Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.<br>
+</br> Download or clone the repo, then run script 1-3 EntraSetup.ps1. Perform the steps requested by the script, you will be prompted to sign in and approve applications and perform steps during the process. PDF files are for reference.<br>
 </br> Run the script 4-CreateURBACRolesAndAssignments.ps1 with:<br>
 ```
 .\4-CreateURBACRolesAndAssignments.ps1 -RunMode Setup -AllowCreateMissing
 ```
-</br>Export the roles from XDR permission page and run the script .\4-ValidateURBACRolesAndAssignments.ps1 to validate all workloads are enabled.
+</br>Export the roles from the XDR permission page (security.microsoft.com > Settings > Permission > XDR) and run the script .\4-ValidateURBACRolesAndAssignments.ps1 to validate all workloads are enabled.
 </br>Perform the steps in the remaining SOPs
