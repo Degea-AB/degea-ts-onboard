@@ -14,6 +14,10 @@ Install-Module -Name Microsoft.Graph -Scope CurrentUser
 ```
 
 </br> Download or clone the repo, then run script 1-3 EntraSetup.ps1. PDF files are for reference.<br>
+</br> Run the script 4-CreateURBACRolesAndAssignments.ps1 with:<br>
+```
+.\4-CreateURBACRolesAndAssignments.ps1 -RunMode Setup -AllowCreateMissing
+```
 </br>Perform the steps in "4-TSD SOP - 04 Onboard Microsoft 365 Defender Unified RBAC.pdf", then export the roles and run the script validate RBAC settings
 </br>Perform the steps in the remaining SOPs
 

@@ -35,6 +35,7 @@
 .EXAMPLE
   .\4-CreateURBACRolesAndAssignments.ps1 -RunMode Setup -AllowCreateMissing
 #>
+#Requires -Version 7.2
 
 [CmdletBinding()]
 param(
@@ -62,7 +63,6 @@ function Confirm-Graph {
     'Directory.ReadWrite.All'
   )
 
-  Disconnect-MgGraph -ErrorAction SilentlyContinue
   Connect-MgGraph -Scopes $scopes -UseDeviceCode -ContextScope Process
 
   $ctx = Get-MgContext
@@ -239,7 +239,6 @@ function Ensure-RoleDefinition {
   $body = @{
     displayName     = $DisplayName
     description     = $Description
-    isEnabled       = $true
     rolePermissions = @(
       @{
         allowedResourceActions = @($AllowedResourceActions | Sort-Object -Unique)
