@@ -59,7 +59,7 @@ function Confirm-Graph {
     'RoleManagement.ReadWrite.Defender',
     'RoleManagement.ReadWrite.Directory',
     'Group.Read.All',
-    'Directory.Read.All'
+    'Directory.ReadWrite.All'
   )
 
   Disconnect-MgGraph -ErrorAction SilentlyContinue
