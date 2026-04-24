@@ -1,38 +1,20 @@
 {
   "displayName": "Admins",
-  "description": "RBAC admins - authorization, detection tuning & core settings",
-  "permissions": {
-    "Security operations": [
-      "Security data basics (read)",
-      "Alerts (manage)",
-      "Response (manage)",
-      "Basic live response (manage)",
-      "Advanced live response (manage)",
-      "File collection (manage)",
-      "Email & collaboration quarantine (manage)",
-      "Email & collaboration advanced actions (manage)"
-    ],
-    "Raw data (Email & collaboration)": [
-      "Email & collaboration metadata (read)",
-      "Email & collaboration content (read)"
-    ],
-    "Security posture": [
-      "Vulnerability management (read)",
-      "Exception handling (manage)",
-      "Remediation handling (manage)",
-      "Secure Score (read)",
-      "Secure Score (manage)"
-    ],
-    "Authorization and settings": [
-      "Authorization (Read and manage)",
-      "Security settings → Detection tuning (manage)",
-      "Security settings → Core security settings (manage)",
-      "System settings (Read and manage)"
-    ]
-  },
+  "description": "Defender XDR administrators with full posture and configuration management",
+  "allowedResourceActions": [
+    "microsoft.xdr/secops/securitydata/alerts/manage",
+    "microsoft.xdr/secops/securitydata/response/manage",
+    "microsoft.xdr/secops/securitydata/liveresponse-basic/manage",
+    "microsoft.xdr/secops/securitydata/liveresponse-advanced/manage",
+    "microsoft.xdr/secops/securitydata/filecollection/manage",
+    "microsoft.xdr/secops/securitydata/emailquarantine/manage",
+    "microsoft.xdr/secops/securitydata/emailadvancedactions/manage",
+    "microsoft.xdr/securityposture/*/manage",
+    "microsoft.xdr/configuration/*/manage"
+  ],
   "assignment": {
     "name": "Full XDR Monitoring",
     "dataSources": "All",
-    "groupRef": "SOC Admins PIM"
+    "groupRef": "Truesec SOC Admins PIM"
   }
 }

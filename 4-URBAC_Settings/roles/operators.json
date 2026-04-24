@@ -1,25 +1,16 @@
 {
   "displayName": "Operators",
-  "description": "SOC operators - manage alerts/response & quarantine, metadata read",
-  "permissions": {
-    "Security operations": [
-      "Security data basics (read)",
-      "Alerts (manage)",
-      "Response (manage)",
-      "Basic live response (manage)",
-      "Email & collaboration quarantine (manage)"
-    ],
-    "Raw data (Email & collaboration)": [
-      "Email & collaboration metadata (read)"
-    ],
-    "Security posture": [
-      "Vulnerability management (read)",
-      "Secure Score (read)"
-    ]
-  },
+  "description": "SOC operators with alert and response management plus read access to posture and configuration",
+  "allowedResourceActions": [
+    "microsoft.xdr/secops/securitydata/alerts/manage",
+    "microsoft.xdr/secops/securitydata/response/manage",
+    "microsoft.xdr/secops/rawdata/huntingschema/read",
+    "microsoft.xdr/securityposture/posturemanagement/*/read",
+    "microsoft.xdr/configuration/*/read"
+  ],
   "assignment": {
     "name": "Full XDR Monitoring",
     "dataSources": "All",
-    "groupRef": "SOC Operators"
+    "groupRef": "Truesec SOC Operators"
   }
 }

@@ -1,32 +1,19 @@
 {
   "displayName": "Privileged Operators",
-  "description": "Elevated operators incl. advanced actions & detection tuning",
-  "permissions": {
-    "Security operations": [
-      "Security data basics (read)",
-      "Alerts (manage)",
-      "Response (manage)",
-      "Basic live response (manage)",
-      "Advanced live response (manage)",
-      "File collection (manage)",
-      "Email & collaboration quarantine (manage)",
-      "Email & collaboration advanced actions (manage)"
-    ],
-    "Security posture": [
-      "Vulnerability management (read)",
-      "Exception handling (manage)",
-      "Remediation handling (manage)",
-      "Secure Score (read)"
-    ],
-    "Authorization and settings": [
-      "Security settings → Detection tuning (manage)",
-      "Security settings → Core security settings (manage)",
-      "System settings (Read and manage)"
-    ]
-  },
+  "description": "Privileged operators with live response, file collection and quarantine actions",
+  "allowedResourceActions": [
+    "microsoft.xdr/secops/securitydata/response/manage",
+    "microsoft.xdr/secops/securitydata/alerts/manage",
+    "microsoft.xdr/secops/securitydata/liveresponse-basic/manage",
+    "microsoft.xdr/secops/securitydata/filecollection/manage",
+    "microsoft.xdr/secops/securitydata/emailquarantine/manage",
+    "microsoft.xdr/secops/rawdata/huntingschema/read",
+    "microsoft.xdr/securityposture/*/read",
+    "microsoft.xdr/configuration/*/read"
+  ],
   "assignment": {
     "name": "Full XDR Monitoring",
     "dataSources": "All",
-    "groupRef": "SOC Privileged Operators"
+    "groupRef": "Truesec SOC Privileged Operators"
   }
 }

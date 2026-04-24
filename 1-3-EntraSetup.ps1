@@ -357,7 +357,25 @@ foreach ($group in $groupSettings.groups) {
 
     $body = $groupObject | ConvertTo-Json
 
-    $groupResponse = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/groups" -Body $body
+    # Check if group already exists, if not, create it. Validate and fix settings if the group already exists.
+    $existingGroup = Get-MgGroup -Filter "displayName eq '$($groupObject.displayName)'" -Property "displayName,description,mailEnabled,isAssignableToRole,securityEnabled,mailNickname" -ErrorAction SilentlyContinue
+    if ($existingGroup) {
+        Write-Host -ForegroundColor Yellow "Group '$($groupObject.displayName)' already exists, skipping creation"
+        
+        # Validate settings
+        $updateGroup = $false
+        foreach ($property in @("description", "isAssignableToRole", "securityEnabled", "mailEnabled", "securityEnabled")) {
+            if ($existingGroup.$property -ne $groupObject.$property) {
+                Write-Host -ForegroundColor Yellow "Group '$($groupObject.displayName)' property '$property' is '$($existingGroup.$property)' but should be '$($groupObject.$property)'. Updating group to fix this."
+                $updateGroup = $true
+                $existingGroup | Add-Member -NotePropertyName $property -NotePropertyValue $groupObject.$property -Force
+            }
+        }
+    }
+    else {
+        Write-Host -ForegroundColor Cyan "Creating group '$($groupObject.displayName)'"
+         $groupResponse = Invoke-MgGraphRequest -Method POST -Uri "https://graph.microsoft.com/v1.0/groups" -Body $body
+    }
 
     #Add owners (if it has a value)
     if ($group.OwnersSP) {

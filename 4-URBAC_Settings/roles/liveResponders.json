@@ -1,33 +1,23 @@
 {
   "displayName": "Live Responders",
-  "description": "Tier with advanced live response and mail-flow actions",
-  "permissions": {
-    "Security operations": [
-      "Security data basics (read)",
-      "Alerts (manage)",
-      "Response (manage)",
-      "Basic live response (manage)",
-      "Advanced live response (manage)",
-      "File collection (manage)",
-      "Email & collaboration quarantine (manage)",
-      "Email & collaboration advanced actions (manage)"
-    ],
-    "Raw data (Email & collaboration)": [
-      "Email & collaboration metadata (read)",
-      "Email & collaboration content (read)"
-    ],
-    "Security posture": [
-      "Vulnerability management (read)",
-      "Remediation handling (manage)",
-      "Secure Score (read)"
-    ],
-    "Authorization and settings": [
-      "System settings (Read and manage)"
-    ]
-  },
+  "description": "Advanced live responders with additional mail and tuning capabilities",
+  "allowedResourceActions": [
+    "microsoft.xdr/secops/securitydata/alerts/manage",
+    "microsoft.xdr/secops/securitydata/response/manage",
+    "microsoft.xdr/secops/securitydata/liveresponse-basic/manage",
+    "microsoft.xdr/secops/securitydata/liveresponse-advanced/manage",
+    "microsoft.xdr/secops/securitydata/filecollection/manage",
+    "microsoft.xdr/secops/securitydata/emailquarantine/manage",
+    "microsoft.xdr/secops/securitydata/emailadvancedactions/manage",
+    "microsoft.xdr/securityposture/*/read",
+    "microsoft.xdr/configuration/authorization/read",
+    "microsoft.xdr/configuration/security/detectiontuning/manage",
+    "microsoft.xdr/configuration/security/core/read",
+    "microsoft.xdr/configuration/system/read"
+  ],
   "assignment": {
     "name": "Full XDR Monitoring",
     "dataSources": "All",
-    "groupRef": "SOC Live Responders"
+    "groupRef": "Truesec SOC Live Responders"
   }
 }

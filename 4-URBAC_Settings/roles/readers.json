@@ -1,26 +1,17 @@
 {
   "displayName": "Readers",
-  "description": "Custom role with read privileges in M365 Defender",
-  "permissions": {
-    "Security operations": [
-      "Security data basics (read)"
-    ],
-    "Raw data (Email & collaboration)": [
-      "Email & collaboration metadata (read)"
-    ],
-    "Security posture": [
-      "Vulnerability management (read)",
-      "Secure Score (read)"
-    ],
-    "Authorization and settings": [
-      "Authorization (Read-only)",
-      "Security settings → Core security settings (read)",
-      "System settings (Read-only)"
-    ]
-  },
+  "description": "Read-only Defender XDR role",
+  "allowedResourceActions": [
+    "microsoft.xdr/secops/securitydata/*/read",
+    "microsoft.xdr/secops/rawdata/huntingschema/read",
+    "microsoft.xdr/securityposture/*/read",
+    "microsoft.xdr/configuration/authorization/read",
+    "microsoft.xdr/configuration/security/*/read",
+    "microsoft.xdr/configuration/system/read"
+  ],
   "assignment": {
     "name": "Full XDR Monitoring",
     "dataSources": "All",
-    "groupRef": "SOC Readers"
+    "groupRef": "Truesec SOC Readers"
   }
 }
